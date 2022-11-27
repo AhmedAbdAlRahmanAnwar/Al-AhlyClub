@@ -3,6 +3,7 @@ exports.app = {
 }
 
 exports.cyberSource = {
+    url:process.env.CYBERSOURCE_URL,
     access_key: process.env.ACCESS_KEY,
     profile_id: process.env.PROFILE_ID,
     secret: process.env.CYBERSOURCE_SECRET,

@@ -1,5 +1,6 @@
 const ErrorMessages = {
     NOT_FOUND_MESSAGE: 'Not Found',
+    BAD_REQUEST_MESSAGE: 'Bad Request',
     INTERNAL_ERROR_MESSAGE: 'Internal Server Error',
 }
 

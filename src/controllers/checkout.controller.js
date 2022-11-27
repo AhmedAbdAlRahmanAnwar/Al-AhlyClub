@@ -1,19 +1,19 @@
 const jwt = require('jsonwebtoken');
-const {cyberSource: {access_key, profile_id}} = require('../config');
+const {cyberSource: {access_key, profile_id}, cyberSource} = require('../config');
 const {jwtSecret} = require('../config');
 const {SUCCESS} = require('../common/StatusCodes_Enum');
 const InternalServerError = require('../errors/InternalServerError');
 const buildCheckoutFormData = require('../helpers/buildCheckoutFormData');
 
-function checkout(req, res, next) {
-    const {membershipID, amount, locale} = req.params;
+function checkout(req, res) {
+    const {membershipID, amount, locale} = req.query;
     const {signature, transaction_uuid, signed_date_time} = buildCheckoutFormData(membershipID, amount, locale);
-
+    console.log(req.query)
     const checkoutForm =
-        `<html lang="en">
+    `<html lang="en">
     <head><title>Secure Acceptance</title></head>
     <body onload="document.payment_confirmation.submit()">
-    <form id="payment_confirmation" name="payment_confirmation" action="https://testsecureacceptance.cybersource.com/pay" method="post">
+    <form id="payment_confirmation" name="payment_confirmation" action="${cyberSource.url}" method="post">
         <input type="hidden" id="access_key" name="access_key" value="${access_key}"/>
         <input type="hidden" id="profile_id" name="profile_id" value="${profile_id}"/>
         <input type="hidden" id="transaction_uuid" name="transaction_uuid" value="${transaction_uuid}"/>
@@ -30,7 +30,7 @@ function checkout(req, res, next) {
     </form></body></html>`;
 
     jwt.sign({checkoutForm}, jwtSecret, {expiresIn: '5m'}, (error, encryptedCheckoutForm) => {
-        if (error){
+        if (error) {
             throw new InternalServerError();
         }
         res.status(SUCCESS).json({
