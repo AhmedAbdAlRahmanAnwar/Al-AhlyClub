@@ -14,9 +14,8 @@ module.exports = (app) => {
     app.use(`${baseUrl}`, membershipPaymentRoutes);
 
     app.post(`${baseUrl}/failure`, (req, res)=>{
-        console.log(req);
-        console.log(req.body);
-        res.sendFile(path.join(__dirname, '/index.html'));
+        // console.log(req.body);
+        res.send(req.body);
     })
 
     // Not found MiddleWare

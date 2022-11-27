@@ -18,7 +18,7 @@ class App {
 
     #setup() {
         const bodySize = '5mb';
-        const parameterLimit = 30;
+        const parameterLimit = 50;
 
         this.#app.use(cors());
         this.#app.use(express.json({limit: bodySize}));
