@@ -7,7 +7,7 @@ const transactionResponseSchema = require('../dto/transactionResponse.dto')
 
 router.post('/handle-transaction',
     protect,
-    // requestValidator(transactionResponseSchema),
+    requestValidator(transactionResponseSchema),
     transactionResponseHandler);
 
 module.exports = router;
