@@ -1,21 +1,51 @@
 const {baseUrl} = require('../config');
 const errorHandler = require('../middlewares/error.middleware');
 const notFoundHandler = require('../middlewares/notFound.middleware');
-const path = require('path');
+
 // Route Files
-const welcomeRoute = require('./welcome.route');
-const membershipPaymentRoutes = require('./membershipPayment.route');
+const healthRoute = require('./health.route');
+const membershipPaymentRoute = require('./membershipPayment.route');
 const checkoutRoute = require('./checkout.route');
+const transactionResponseRoute = require('./transactionResponse.route');
+
 
 // Register all app routes
 module.exports = (app) => {
-    app.use(welcomeRoute);      /* Remove this route in production */
+    app.use(healthRoute);      /* Remove this route in production */
     app.use(`${baseUrl}`, checkoutRoute);
-    app.use(`${baseUrl}`, membershipPaymentRoutes);
+    app.use(`${baseUrl}`, membershipPaymentRoute);
+    app.use(`${baseUrl}`, transactionResponseRoute);
 
-    app.post(`${baseUrl}/failure`, (req, res)=>{
-        // console.log(req.body);
-        res.send(req.body);
+    app.get('/success/get', (req, res)=>{
+        const query = req.query;
+        res.send(`
+        <h1>Success - Get</h1>
+        <p>${JSON.stringify(query)}</p>
+        `);
+    })
+
+    app.post('/success/post', (req, res)=>{
+        const query = req.query;
+        res.send(`
+        <h1>Success - Post</h1>
+        <p>${JSON.stringify(query)}</p>
+        `);
+    })
+
+    app.get('/failure/get', (req, res)=>{
+        const query = req.query;
+        res.send(`
+        <h1>failure - Get</h1>
+        <p>${JSON.stringify(query)}</p>
+        `);
+    })
+
+    app.post('/failure/post', (req, res)=>{
+        const query = req.query;
+        res.send(`
+        <h1>failure - Post</h1>
+        <p>${JSON.stringify(query)}</p>
+        `);
     })
 
     // Not found MiddleWare

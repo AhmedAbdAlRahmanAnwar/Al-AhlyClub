@@ -1,4 +1,4 @@
-const jwt = require('jsonwebtoken');
+const jwtSign = require('jsonwebtoken/sign');
 const {cyberSource: {access_key, profile_id}, cyberSource} = require('../config');
 const {jwtSecret} = require('../config');
 const {SUCCESS} = require('../common/StatusCodes_Enum');
@@ -8,12 +8,12 @@ const buildCheckoutFormData = require('../helpers/buildCheckoutFormData');
 function checkout(req, res) {
     const {membershipID, amount, locale} = req.query;
     const {signature, transaction_uuid, signed_date_time} = buildCheckoutFormData(membershipID, amount, locale);
-    console.log(req.query)
+
     const checkoutForm =
     `<html lang="en">
     <head><title>Secure Acceptance</title></head>
     <body onload="document.payment_confirmation.submit()">
-    <form id="payment_confirmation" name="payment_confirmation" action="${cyberSource.url}" method="post">
+    <form id="payment_confirmation" name="payment_confirmation" action="${cyberSource.url}/pay" method="post">
         <input type="hidden" id="access_key" name="access_key" value="${access_key}"/>
         <input type="hidden" id="profile_id" name="profile_id" value="${profile_id}"/>
         <input type="hidden" id="transaction_uuid" name="transaction_uuid" value="${transaction_uuid}"/>
@@ -29,7 +29,7 @@ function checkout(req, res) {
         <input type="hidden" id="signature" name="signature" value="${signature}"/>
     </form></body></html>`;
 
-    jwt.sign({checkoutForm}, jwtSecret, {expiresIn: '5m'}, (error, encryptedCheckoutForm) => {
+    jwtSign({checkoutForm}, jwtSecret, {expiresIn: '5m'}, (error, encryptedCheckoutForm) => {
         if (error) {
             throw new InternalServerError();
         }
