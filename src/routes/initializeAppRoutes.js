@@ -6,7 +6,7 @@ const notFoundHandler = require('../middlewares/notFound.middleware');
 const healthRoute = require('./health.route');
 const membershipPaymentRoute = require('./membershipPayment.route');
 const checkoutRoute = require('./checkout.route');
-const transactionResponseRoute = require('./transactionResponse.route');
+const handleTransactionRoute = require('./transactionResponse.route');
 
 
 // Register all app routes
@@ -14,7 +14,7 @@ module.exports = (app) => {
     app.use(healthRoute);      /* Remove this route in production */
     app.use(`${baseUrl}`, checkoutRoute);
     app.use(`${baseUrl}`, membershipPaymentRoute);
-    app.use(`${baseUrl}`, transactionResponseRoute);
+    app.use(`${baseUrl}`, handleTransactionRoute);
 
     app.get('/success/get', (req, res)=>{
         const query = req.query;

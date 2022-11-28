@@ -5,7 +5,7 @@ const protect = require('../middlewares/verifyRequestOrigin.middleware');
 const requestValidator = require('../middlewares/requestValidator.middleware');
 const transactionResponseSchema = require('../dto/transactionResponse.dto')
 
-router.post('/transactionResponse',
+router.post('/handle-transaction',
     protect,
     // requestValidator(transactionResponseSchema),
     transactionResponseHandler);
