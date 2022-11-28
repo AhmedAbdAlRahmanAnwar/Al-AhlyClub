@@ -21,6 +21,7 @@ module.exports = (app) => {
         res.send(`
         <h1>Success - Get</h1>
         <p>${JSON.stringify(query)}</p>
+        <p>${JSON.stringify(req.body)}</p>
         `);
     })
 
@@ -29,6 +30,7 @@ module.exports = (app) => {
         res.send(`
         <h1>Success - Post</h1>
         <p>${JSON.stringify(query)}</p>
+        <p>${JSON.stringify(req.body)}</p>
         `);
     })
 
@@ -37,6 +39,7 @@ module.exports = (app) => {
         res.send(`
         <h1>failure - Get</h1>
         <p>${JSON.stringify(query)}</p>
+        <p>${JSON.stringify(req.body)}</p>
         `);
     })
 
@@ -45,6 +48,7 @@ module.exports = (app) => {
         res.send(`
         <h1>failure - Post</h1>
         <p>${JSON.stringify(query)}</p>
+        <p>${JSON.stringify(req.body)}</p>
         `);
     })
 
