@@ -10,7 +10,7 @@ const handleTransactionRoute = require('./transactionResponse.route');
 const successRoute = require('../routes/success.route');
 const failureRoute = require('../routes/failure.route');
 const logFile = require('../../logs.json');
-
+const path = require('path');
 // Register all app routes
 module.exports = (app) => {
     app.use(healthRoute);      /* Remove this route in production */
@@ -22,7 +22,7 @@ module.exports = (app) => {
 
     // Send log file
     app.get('/logs',(req, res)=>{
-        res.json(logFile);
+        res.sendFile(path.join(__dirname, '../../logs.json'));
     })
 
     // Not found MiddleWare
