@@ -4,9 +4,6 @@ const {SUCCESS} = require("../common/StatusCodes_Enum");
 function sendPaymentStatus(req, res) {
     const {decision, req_reference_number, message} = req.body;
 
-    if (!(decision && req_reference_number)) {
-        throw new BadRequestError();
-    }
     res.status(SUCCESS).json({
         status: SUCCESS,
         message,
