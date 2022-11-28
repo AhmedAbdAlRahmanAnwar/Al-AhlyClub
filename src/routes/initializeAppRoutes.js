@@ -7,7 +7,8 @@ const healthRoute = require('./health.route');
 const membershipPaymentRoute = require('./membershipPayment.route');
 const checkoutRoute = require('./checkout.route');
 const handleTransactionRoute = require('./transactionResponse.route');
-
+const successRoute = require('../routes/success.route');
+const failureRoute = require('../routes/failure.route');
 
 // Register all app routes
 module.exports = (app) => {
@@ -15,44 +16,8 @@ module.exports = (app) => {
     app.use(`${baseUrl}`, checkoutRoute);
     app.use(`${baseUrl}`, membershipPaymentRoute);
     app.use(`${baseUrl}`, handleTransactionRoute);
-
-    app.get('/success/get', (req, res)=>{
-        const query = req.query;
-        res.send(`
-        <h1>Success - Get</h1>
-        <p>${JSON.stringify(query)}</p>
-        <p>${JSON.stringify(req.body)}</p>
-        `);
-    })
-
-    // app.post('/success/post', (req, res)=>{
-    //     const query = req.query;
-    //     const origin = req.get('origin');
-    //     res.send(`
-    //     <h1>Success - Post</h1>
-    //     <p>${JSON.stringify(query)}</p>
-    //     <p>${JSON.stringify(origin)}</p>
-    //     <p>${JSON.stringify(req.body)}</p>
-    //     `);
-    // })
-
-    app.get('/failure/get', (req, res)=>{
-        const query = req.query;
-        res.send(`
-        <h1>failure - Get</h1>
-        <p>${JSON.stringify(query)}</p>
-        <p>${JSON.stringify(req.body)}</p>
-        `);
-    })
-
-    // app.post('/failure/post', (req, res)=>{
-    //     const query = req.query;
-    //     res.send(`
-    //     <h1>failure - Post</h1>
-    //     <p>${JSON.stringify(query)}</p>
-    //     <p>${JSON.stringify(req.body)}</p>
-    //     `);
-    // })
+    app.use(`${baseUrl}`, successRoute);
+    app.use(`${baseUrl}`, failureRoute);
 
     // Not found MiddleWare
     app.use(notFoundHandler);
