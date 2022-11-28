@@ -1,4 +1,4 @@
-const ValidationError = require('../errors/ValidationError');
+const BadRequestError = require('../errors/BadRequestError');
 const RequestAttributes = ['body', 'params', 'query', 'headers'];
 
 module.exports = (schema) => {
@@ -15,7 +15,11 @@ module.exports = (schema) => {
         });
 
         if (validationErrors.length){
-            throw new ValidationError(validationErrors.join());
+            // Uncomment in Development
+            // throw new BadRequestError(validationErrors.join());
+
+            // Uncomment in Production
+            throw new BadRequestError();
         }
         next();
     };

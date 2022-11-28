@@ -6,8 +6,9 @@ const InternalServerError = require('../errors/InternalServerError');
 const buildCheckoutFormData = require('../helpers/buildCheckoutFormData');
 
 function checkout(req, res) {
-    const {membershipID, amount, locale} = req.query;
-    const {signature, transaction_uuid, signed_date_time} = buildCheckoutFormData(membershipID, amount, locale);
+    const {membershipID, amount, locale, type} = req.query;
+    const reference_number = membershipID + '_' + type;
+    const {signature, transaction_uuid, signed_date_time} = buildCheckoutFormData(reference_number, amount, locale);
 
     const checkoutForm =
     `<html lang="en">
@@ -22,7 +23,7 @@ function checkout(req, res) {
         <input type="hidden" id="signed_date_time" name="signed_date_time" value="${signed_date_time}"/>
         <input type="hidden" id="locale" name="locale" value="${locale}"/>
         <input type="hidden" id="transaction_type" name="transaction_type" value="sale"/>
-        <input type="hidden" id="reference_number" name="reference_number" value="${membershipID}"/>
+        <input type="hidden" id="reference_number" name="reference_number" value="${reference_number}"/>
         <input type="hidden" id="amount" name="amount" value="${amount}"/>
         <input type="hidden" id="currency" name="currency" value="EGP"/>
         <input type="hidden" id="bill_to_address_country" name="bill_to_address_country" value="EG"/>

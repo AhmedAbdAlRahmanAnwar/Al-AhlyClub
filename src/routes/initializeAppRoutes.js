@@ -27,9 +27,11 @@ module.exports = (app) => {
 
     app.post('/success/post', (req, res)=>{
         const query = req.query;
+        const origin = req.get('origin');
         res.send(`
         <h1>Success - Post</h1>
         <p>${JSON.stringify(query)}</p>
+        <p>${JSON.stringify(origin)}</p>
         <p>${JSON.stringify(req.body)}</p>
         `);
     })
