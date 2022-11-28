@@ -14,9 +14,9 @@ function handleTransaction(req, res) {
     // });
 
     if (decision === 'ACCEPT'){
-        res.redirect(`/success/get?decision=${decision}&req_reference_number=${req_reference_number}`);
+        res.redirect(`/success/get?decision=${decision}&req_reference_number=${req_reference_number}&signed_date_time=${signed_date_time}&transaction_id=${transaction_id}`);
     }else{
-        res.redirect(`/failure/get?decision=${decision}&req_reference_number=${req_reference_number}`);
+        res.redirect(`/failure/get?decision=${decision}&req_reference_number=${req_reference_number}&signed_date_time=${signed_date_time}&transaction_id=${transaction_id}`);
     }
 
     // const query = req.query;
