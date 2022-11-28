@@ -16,8 +16,8 @@ module.exports = (app) => {
     app.use(`${baseUrl}`, checkoutRoute);
     app.use(`${baseUrl}`, membershipPaymentRoute);
     app.use(`${baseUrl}`, handleTransactionRoute);
-    app.use(`${baseUrl}`, successRoute);
-    app.use(`${baseUrl}`, failureRoute);
+    app.use(successRoute);
+    app.use(failureRoute);
 
     // Not found MiddleWare
     app.use(notFoundHandler);

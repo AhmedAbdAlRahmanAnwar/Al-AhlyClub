@@ -1,7 +1,6 @@
 module.exports = (req, res) => {
-    const query = req.query;
     res.send(`
-        <h1>Success</h1>
-        <p>${JSON.stringify(query)}</p>
+        <h1>Success Page</h1>
+        <p>${JSON.stringify(req.query)}</p>
     `);
 }
