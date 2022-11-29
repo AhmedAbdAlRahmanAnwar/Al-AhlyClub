@@ -16,10 +16,10 @@ module.exports = (schema) => {
 
         if (validationErrors.length) {
             // Uncomment in Development
-            // throw new BadRequestError(validationErrors.join());
+            throw new BadRequestError(validationErrors.join());
 
             // Uncomment in Production
-            throw new BadRequestError();
+            // throw new BadRequestError();
         }
         next();
     };

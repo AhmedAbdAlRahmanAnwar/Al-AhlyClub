@@ -6,8 +6,8 @@ const InternalServerError = require('../errors/InternalServerError');
 const buildCheckoutFormData = require('../helpers/buildCheckoutFormData');
 
 function checkout(req, res) {
-    const {membershipID, amount, locale, type} = req.query;
-    const reference_number = membershipID + '_' + type;
+    const {membershipID, amount, locale, type, name} = req.query;
+    const reference_number = name + '_' + membershipID + '_' + type;
     const {signature, transaction_uuid, signed_date_time} = buildCheckoutFormData(reference_number, amount, locale);
 
     const checkoutForm =

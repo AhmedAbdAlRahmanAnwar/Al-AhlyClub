@@ -9,8 +9,8 @@ const checkoutRoute = require('./checkout.route');
 const handleTransactionRoute = require('./transactionResponse.route');
 const successRoute = require('../routes/success.route');
 const failureRoute = require('../routes/failure.route');
-const logFile = require('../../logs.json');
 const path = require('path');
+
 // Register all app routes
 module.exports = (app) => {
     app.use(healthRoute);      /* Remove this route in production */
