@@ -29,16 +29,16 @@ function checkout(req, res) {
         <input type="hidden" id="signature" name="signature" value="${signature}"/>
     </form></body></html>`;
 
-    // jwtSign({checkoutForm}, jwtSecret, {expiresIn: '5m'}, (error, encryptedCheckoutForm) => {
-    //     if (error) {
-    //         throw new InternalServerError();
-    //     }
+    jwtSign({checkoutForm}, jwtSecret, {expiresIn: '5m'}, (error, encryptedCheckoutForm) => {
+        if (error) {
+            throw new InternalServerError();
+        }
         res.status(SUCCESS).json({
             status: SUCCESS,
             message: 'Form Created Successfully',
-            data: checkoutForm
+            data: encryptedCheckoutForm
         });
-    // });
+    });
 }
 
 module.exports = checkout;
