@@ -20,7 +20,7 @@ function callAlAhlyApi(reference_number, amount) {
     const headerConfig = {
         headers: {
             'Content-Type': 'text/xml',
-            Host: ahlyApiUrl
+            Host: 'api.ahly.com'
         }
     };
 

@@ -7,6 +7,7 @@ exports.cyberSource = {
     access_key: process.env.ACCESS_KEY,
     profile_id: process.env.PROFILE_ID,
     secret: process.env.CYBERSOURCE_SECRET,
+    signed_field_names: process.env.SIGNED_FIELD_NAMES
 }
 
 exports.baseUrl = process.env.BASE_URL;

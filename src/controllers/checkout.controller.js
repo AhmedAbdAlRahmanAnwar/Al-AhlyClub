@@ -1,5 +1,5 @@
 const jwtSign = require('jsonwebtoken/sign');
-const {cyberSource: {access_key, profile_id}, cyberSource} = require('../config');
+const {cyberSource: {access_key, profile_id, signed_field_names, url}} = require('../config');
 const {jwtSecret} = require('../config');
 const {SUCCESS} = require('../common/StatusCodes_Enum');
 const InternalServerError = require('../errors/InternalServerError');
@@ -14,12 +14,11 @@ function checkout(req, res) {
     `<html lang="en">
     <head><title>Secure Acceptance</title></head>
     <body onload="document.payment_confirmation.submit()">
-    <form id="payment_confirmation" name="payment_confirmation" action="${cyberSource.url}/pay" method="post">
+    <form id="payment_confirmation" name="payment_confirmation" action="${url}/pay" method="post">
         <input type="hidden" id="access_key" name="access_key" value="${access_key}"/>
         <input type="hidden" id="profile_id" name="profile_id" value="${profile_id}"/>
         <input type="hidden" id="transaction_uuid" name="transaction_uuid" value="${transaction_uuid}"/>
-        <input type="hidden" id="signed_field_names" name="signed_field_names"
-               value="access_key,profile_id,transaction_uuid,signed_field_names,signed_date_time,locale,transaction_type,reference_number,amount,currency,bill_to_address_country"/>
+        <input type="hidden" id="signed_field_names" name="signed_field_names" value="${signed_field_names}"/>
         <input type="hidden" id="signed_date_time" name="signed_date_time" value="${signed_date_time}"/>
         <input type="hidden" id="locale" name="locale" value="${locale}"/>
         <input type="hidden" id="transaction_type" name="transaction_type" value="sale"/>
