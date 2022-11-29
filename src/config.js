@@ -11,3 +11,4 @@ exports.cyberSource = {
 
 exports.baseUrl = process.env.BASE_URL;
 exports.jwtSecret = process.env.JWT_SECRET;
+exports.ahlyApiUrl = process.env.ALAHLY_API_URL;
