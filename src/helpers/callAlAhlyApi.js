@@ -1,5 +1,5 @@
 const axios = require('axios');
-const XMLParser = require('react-xml-parser');
+// const XMLParser = require('react-xml-parser');
 const {ahlyApiUrl} = require('../config');
 
 function callAlAhlyApi(reference_number, amount) {
@@ -24,12 +24,12 @@ function callAlAhlyApi(reference_number, amount) {
         }
     };
 
-    axios.post(`${ahlyApiUrl}/ahly/CalcWebService.asmx?op=${alahlyPaymentEndpoint}`, xmlBody, headerConfig)
-        .then(res => {
-            const xml = new XMLParser().parseFromString(res.data);
-            xml.getElementsByTagName('anytype');
-        })
-        .catch(error => console.log(error.message))
+    // axios.post(`${ahlyApiUrl}/ahly/CalcWebService.asmx?op=${alahlyPaymentEndpoint}`, xmlBody, headerConfig)
+    //     .then(res => {
+            // const xml = new XMLParser().parseFromString(res.data);
+            // xml.getElementsByTagName('anytype');
+        // })
+        // .catch(error => console.log(error.message))
 }
 
 module.exports = callAlAhlyApi;
