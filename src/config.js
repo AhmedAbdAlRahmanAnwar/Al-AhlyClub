@@ -10,6 +10,9 @@ exports.cyberSource = {
     signed_field_names: process.env.SIGNED_FIELD_NAMES
 }
 
+exports.ahlyApi = {
+    url: process.env.ALAHLY_API_URL,
+    host: process.env.ALAHLY_HOST_HEADER
+}
+
 exports.baseUrl = process.env.BASE_URL;
-exports.jwtSecret = process.env.JWT_SECRET;
-exports.ahlyApiUrl = process.env.ALAHLY_API_URL;

@@ -1,5 +1,5 @@
 const axios = require('axios');
-const {ahlyApiUrl} = require('../config');
+const {ahlyApi} = require('../config');
 
 function callAlAhlyApi(reference_number, amount) {
     const [, membershipID, type] = reference_number.split('_');
@@ -19,11 +19,11 @@ function callAlAhlyApi(reference_number, amount) {
     const headerConfig = {
         headers: {
             'Content-Type': 'text/xml',
-            Host: 'api.ahly.com'
+            Host: ahlyApi.host
         }
     };
 
-    return axios.post(`${ahlyApiUrl}/ahly/CalcWebService.asmx?op=${alahlyPaymentEndpoint}`, xmlBody, headerConfig);
+    return axios.post(`${ahlyApi.url}?op=${alahlyPaymentEndpoint}`, xmlBody, headerConfig);
 }
 
 module.exports = callAlAhlyApi;

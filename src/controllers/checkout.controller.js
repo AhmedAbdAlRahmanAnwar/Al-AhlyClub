@@ -1,8 +1,5 @@
-const jwtSign = require('jsonwebtoken/sign');
 const {cyberSource: {access_key, profile_id, signed_field_names, url}} = require('../config');
-const {jwtSecret} = require('../config');
 const {SUCCESS} = require('../common/StatusCodes_Enum');
-const InternalServerError = require('../errors/InternalServerError');
 const buildCheckoutFormData = require('../helpers/buildCheckoutFormData');
 
 function checkout(req, res) {
@@ -29,15 +26,10 @@ function checkout(req, res) {
         <input type="hidden" id="signature" name="signature" value="${signature}"/>
     </form></body></html>`;
 
-    jwtSign({checkoutForm}, jwtSecret, {expiresIn: '5m'}, (error, encryptedCheckoutForm) => {
-        if (error) {
-            throw new InternalServerError();
-        }
-        res.status(SUCCESS).json({
-            status: SUCCESS,
-            message: 'Form Created Successfully',
-            data: encryptedCheckoutForm
-        });
+    res.status(SUCCESS).json({
+        status: SUCCESS,
+        message: 'Form Created Successfully',
+        data: checkoutForm
     });
 }
 
