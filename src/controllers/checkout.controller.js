@@ -11,7 +11,7 @@ function checkout(req, res) {
     `<html lang="en">
     <head><title>Secure Acceptance</title></head>
     <body onload="document.payment_confirmation.submit()">
-    <form id="payment_confirmation" name="payment_confirmation" action="${url}/pay" method="post">
+    <form id="payment_confirmation" name="payment_confirmation" action="${url}" method="post">
         <input type="hidden" id="access_key" name="access_key" value="${access_key}"/>
         <input type="hidden" id="profile_id" name="profile_id" value="${profile_id}"/>
         <input type="hidden" id="transaction_uuid" name="transaction_uuid" value="${transaction_uuid}"/>

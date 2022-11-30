@@ -9,7 +9,7 @@ module.exports = async function handlePaymentGatewayCallback(req, res) {
 
         if (decision === 'ACCEPT' && reason_code === SUCCESS_CODE && !isPaymentTampered(req.body)) {
             const {data} = await callAlAhlyApi(req_reference_number, req_amount);
-            data ? res.status(SUCCESS).send("Payment Successful") : res.status(INTERNAL_ERROR).send();
+            data ? res.status(SUCCESS).send() : res.status(INTERNAL_ERROR).send();
             return;
         }
         res.status(BAD_REQUEST).send();
