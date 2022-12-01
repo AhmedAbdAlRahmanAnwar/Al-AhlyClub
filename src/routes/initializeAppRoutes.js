@@ -9,7 +9,7 @@ const checkoutRoute = require('./checkout.route');
 const handleTransactionRoute = require('./transactionResponse.route');
 const successRoute = require('../routes/success.route');
 const failureRoute = require('../routes/failure.route');
-const path = require('path');
+const logsRoute = require('../routes/logs.route');
 
 // Register all app routes
 module.exports = (app) => {
@@ -17,13 +17,9 @@ module.exports = (app) => {
     app.use(`${baseUrl}`, checkoutRoute);
     app.use(`${baseUrl}`, membershipPaymentRoute);
     app.use(`${baseUrl}`, handleTransactionRoute);
+    app.use(`${baseUrl}`, logsRoute);
     app.use(successRoute);
     app.use(failureRoute);
-
-    // Send log file
-    app.get('/logs',(req, res)=>{
-        res.sendFile(path.join(__dirname, '../../logs.json'));
-    })
 
     // Not found MiddleWare
     app.use(notFoundHandler);
