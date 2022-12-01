@@ -15,7 +15,7 @@ module.exports = (schema) => {
         });
 
         if (validationErrors.length) {
-            throw new BadRequestError();
+            throw new BadRequestError(validationErrors.join());
         }
         next();
     };
