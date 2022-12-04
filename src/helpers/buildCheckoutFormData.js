@@ -7,7 +7,9 @@ function convertObjToCommaSeparatedString(obj) {
     return Object.keys(obj).map(key => key + '=' + obj[key]).join(',');
 }
 
-module.exports = function buildCheckoutFormData(reference_number, amount, locale) {
+module.exports = function buildCheckoutFormData(reference_number, amount, locale, name) {
+    const fullName = name.split(' ');
+
     const formData = {
         access_key,
         profile_id,
@@ -19,6 +21,9 @@ module.exports = function buildCheckoutFormData(reference_number, amount, locale
         reference_number,
         amount,
         currency: 'EGP',
+        bill_to_forename: fullName.at(0),
+        bill_to_surname: fullName.at(-1),
+        bill_to_address_city: 'cairo',
         bill_to_address_country: 'EG'
     };
 

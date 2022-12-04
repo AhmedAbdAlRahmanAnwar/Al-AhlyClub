@@ -5,7 +5,7 @@ const buildCheckoutFormData = require('../helpers/buildCheckoutFormData');
 function checkout(req, res) {
     const {membershipID, amount, locale, type, name} = req.query;
     const reference_number = name + '_' + membershipID + '_' + type;
-    const {signature, transaction_uuid, signed_date_time} = buildCheckoutFormData(reference_number, amount, locale);
+    const {signature, transaction_uuid, signed_date_time, bill_to_forename, bill_to_surname} = buildCheckoutFormData(reference_number, amount, locale, name);
     const cyberSourceEndpoint = '/pay';
 
     const checkoutForm =
@@ -23,6 +23,9 @@ function checkout(req, res) {
         <input type="hidden" id="reference_number" name="reference_number" value="${reference_number}"/>
         <input type="hidden" id="amount" name="amount" value="${amount}"/>
         <input type="hidden" id="currency" name="currency" value="EGP"/>
+        <input type="hidden" id="bill_to_forename" name="bill_to_forename" value="${bill_to_forename}"/>
+        <input type="hidden" id="bill_to_surname" name="bill_to_surname" value="${bill_to_surname}"/>
+        <input type="hidden" id="bill_to_address_city" name="bill_to_address_city" value="cairo"/>
         <input type="hidden" id="bill_to_address_country" name="bill_to_address_country" value="EG"/>
         <input type="hidden" id="signature" name="signature" value="${signature}"/>
     </form></body></html>`;
