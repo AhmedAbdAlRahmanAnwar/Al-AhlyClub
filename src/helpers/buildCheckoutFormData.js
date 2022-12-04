@@ -21,8 +21,8 @@ module.exports = function buildCheckoutFormData(reference_number, amount, locale
         reference_number,
         amount,
         currency: 'EGP',
-        bill_to_forename: fullName.at(0),
-        bill_to_surname: fullName.at(-1),
+        bill_to_forename: fullName[0],
+        bill_to_surname: fullName.slice(-1),
         bill_to_address_city: 'cairo',
         bill_to_address_country: 'EG'
     };
