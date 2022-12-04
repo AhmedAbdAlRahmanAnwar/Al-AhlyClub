@@ -8,7 +8,7 @@ const transactionResponseSchema = {
         signed_date_time: Joi.date().required().iso(),
         transaction_id: Joi.string().required(),
         reason_code: Joi.string().required().pattern(/^[0-9]+$/).max(5),
-        req_amount: Joi.string().required().pattern(/^[0-9]+$/)
+        req_amount: Joi.string().required().pattern(/^[0-9]+(.[0-9]+)?$/)
     }).unknown(true)
 }
 
