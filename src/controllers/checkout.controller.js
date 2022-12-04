@@ -11,11 +11,13 @@ function checkout(req, res) {
         transaction_uuid,
         signed_date_time,
         bill_to_forename,
-        bill_to_surname
+        bill_to_surname,
+        bill_to_email,
+        bill_to_address_line1
     } = buildCheckoutFormData(reference_number, amount, locale, name);
 
     const checkoutForm =
-        `<html lang="en">
+    `<html lang="en">
     <head><title>Secure Acceptance</title></head>
     <body onload="document.payment_confirmation.submit()">
     <form id="payment_confirmation" name="payment_confirmation" action="${url}${cyberSourceEndpoint}" method="post">
@@ -31,6 +33,8 @@ function checkout(req, res) {
         <input type="hidden" id="currency" name="currency" value="EGP"/>
         <input type="hidden" id="bill_to_forename" name="bill_to_forename" value="${bill_to_forename}"/>
         <input type="hidden" id="bill_to_surname" name="bill_to_surname" value="${bill_to_surname}"/>
+        <input type="hidden" id="bill_to_email" name="bill_to_email" value="${bill_to_email}"/>
+        <input type="hidden" id="bill_to_address_line1" name="bill_to_address_line1" value="${bill_to_address_line1}"/>
         <input type="hidden" id="bill_to_address_city" name="bill_to_address_city" value="cairo"/>
         <input type="hidden" id="bill_to_address_country" name="bill_to_address_country" value="EG"/>
         <input type="hidden" id="signature" name="signature" value="${signature}"/>

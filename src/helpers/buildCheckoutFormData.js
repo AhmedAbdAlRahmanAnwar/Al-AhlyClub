@@ -1,7 +1,8 @@
 const {cyberSource: {access_key, profile_id, secret}} = require('../config');
-const {v4: uuid} = require("uuid");
-const crypto = require("crypto");
+const {v4: uuid} = require('uuid');
+const crypto = require('crypto');
 const {cyberSource:{signed_field_names}} = require('../config');
+const {faker} = require('@faker-js/faker');
 
 function convertObjToCommaSeparatedString(obj) {
     return Object.keys(obj).map(key => key + '=' + obj[key]).join(',');
@@ -23,6 +24,8 @@ module.exports = function buildCheckoutFormData(reference_number, amount, locale
         currency: 'EGP',
         bill_to_forename: fullName[0],
         bill_to_surname: fullName.slice(-1),
+        bill_to_email: faker.internet.email(),
+        bill_to_address_line1: faker.address.streetAddress(),
         bill_to_address_city: 'cairo',
         bill_to_address_country: 'EG'
     };
