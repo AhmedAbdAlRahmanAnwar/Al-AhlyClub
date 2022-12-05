@@ -8,6 +8,7 @@
   "routes": [
     {
       "src": "/(.*)",
+      "methods": ["POST", "GET"],
       "dest": "src/server.js"
     }
   ]
