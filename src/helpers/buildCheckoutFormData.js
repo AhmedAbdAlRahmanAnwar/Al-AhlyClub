@@ -26,7 +26,7 @@ module.exports = function buildCheckoutFormData(reference_number, amount, locale
         bill_to_surname: fullName.slice(-1),
         bill_to_email: faker.internet.email(),
         bill_to_address_line1: faker.address.streetAddress(),
-        bill_to_address_city: '',
+        bill_to_address_city: 'cairo',
         bill_to_address_country: 'EG'
     };
 
