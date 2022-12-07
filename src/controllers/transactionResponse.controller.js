@@ -31,7 +31,7 @@ function handleTransaction(req, res) {
     reason_code === SUCCESS_CODE &&
     !isPaymentTampered(req.body)
   ) {
-    res.redirect(`/success?${queryString}`);
+    res.redirect(`/success?${JSON.stringify(queryString)}`);
   } else {
     res.redirect(`/failure?${queryString}`);
   }
