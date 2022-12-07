@@ -21,11 +21,6 @@ function handleTransaction(req, res) {
     transaction_id,
   };
 
-  // `decision=${decision}&
-  // req_reference_number=${req_reference_number}&
-  // signed_date_time=${signed_date_time}&
-  // transaction_id=${transaction_id}&
-  // req_amount=${req_amount}`;
   const SUCCESS_CODE = '100';
 
   if (
@@ -33,9 +28,9 @@ function handleTransaction(req, res) {
     reason_code === SUCCESS_CODE &&
     !isPaymentTampered(req.body)
   ) {
-    res.redirect(`/successPage?response=${JSON.stringify(queryString)}`);
+    res.redirect(`/successPage?${JSON.stringify(queryString)}`);
   } else {
-    res.redirect(`/failurePage?response=${JSON.stringify(queryString)}`);
+    res.redirect(`/failurePage?${JSON.stringify(queryString)}`);
   }
 }
 
