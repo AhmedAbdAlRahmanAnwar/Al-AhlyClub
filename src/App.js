@@ -16,11 +16,14 @@ class App {
   }
 
   #setup() {
-    const bodySize = '5mb';
+    const bodySize = '10mb';
+    const parameterLimit = 400;
 
     this.#app.use(cors());
     this.#app.use(express.json({ limit: bodySize }));
-    this.#app.use(express.urlencoded({ limit: bodySize, extended: false }));
+    this.#app.use(
+      express.urlencoded({ limit: bodySize, extended: false, parameterLimit })
+    );
 
     // Middleware to protect against HTTP Parameter Pollution attacks
     this.#app.use(hpp());
