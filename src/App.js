@@ -6,7 +6,6 @@ const helmet = require('helmet');
 const hpp = require('hpp');
 const limiter = require('./middlewares/ratelimiter.middleware');
 
-
 class App {
     #app = null;
 
