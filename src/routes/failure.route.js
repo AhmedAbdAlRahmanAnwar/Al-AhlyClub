@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/failure', (req, res) => {
-    res.send();
+router.get('/failurePage', (req, res) => {
+  res.send();
 });
 
 module.exports = router;
