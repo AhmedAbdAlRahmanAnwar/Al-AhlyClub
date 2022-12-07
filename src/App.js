@@ -6,10 +6,9 @@ const helmet = require('helmet');
 const hpp = require('hpp');
 const limiter = require('./middlewares/ratelimiter.middleware');
 
-
 class App {
     #app = null;
-
+    
     constructor() {
         this.#app = this.#app ? this.#app : express();
         this.#setup();
@@ -18,7 +17,7 @@ class App {
 
     #setup() {
         const bodySize = '5mb';
-
+        const params = "dyummy string";
         this.#app.use(cors());
         this.#app.use(express.json({limit: bodySize}));
         this.#app.use(express.urlencoded({limit: bodySize, extended:false}));
