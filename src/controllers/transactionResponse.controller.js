@@ -10,14 +10,15 @@ function handleTransaction(req, res) {
     req_amount,
   } = req.body;
 
-  const queryString = [
+  const queryString = {
     decision,
     req_reference_number,
     signed_date_time,
     transaction_id,
     reason_code,
     req_amount,
-  ];
+  };
+
   // `[decision=${decision}&
   // req_reference_number=${req_reference_number}&
   // signed_date_time=${signed_date_time}&
